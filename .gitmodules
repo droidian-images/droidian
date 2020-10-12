@@ -1,0 +1,3 @@
+[submodule "rootfs-templates"]
+	path = rootfs-templates
+	url = https://github.com/hybris-mobian-releng/rootfs-templates

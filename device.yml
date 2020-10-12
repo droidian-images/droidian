@@ -1,0 +1,27 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $image := or .image (printf "hybrismobian-rootfs-api28gsi-%s.tar.gz" $architecture) -}}
+{{- $output_type := "tarball" -}}
+
+architecture: {{ $architecture }}
+actions:
+
+  - action: recipe
+    description: create rootfs
+    recipe: rootfs-templates/api28gsi_minimal.yaml
+    variables:
+      architecture: {{ $architecture }}
+      image: {{ $image }}
+      output_type: {{ $output_type }}
+
+  - action: recipe
+    description: Polish the image
+    recipe: rootfs-templates/polish.yaml
+    variables:
+      architecture: {{ $architecture }}
+      image: {{ $image }}
+      output_type: {{ $output_type }}
+
+  - action: pack
+    description: Compressing image
+    file: {{ $image }}
+    compression: gz

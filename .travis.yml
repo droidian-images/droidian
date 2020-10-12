@@ -1,0 +1,6 @@
+env:
+  global:
+    BUILD_ON="amd64 arm64 armhf"
+
+import:
+  source: hybris-mobian-releng/build-snippets:debos-rootfs.yml@feature/bullseye/rootfs-tarball
