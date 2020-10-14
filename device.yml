@@ -13,6 +13,7 @@ actions:
       image: {{ $image }}
       output_type: {{ $output_type }}
 
+
   - action: recipe
     description: Polish the image
     recipe: rootfs-templates/polish.yaml
