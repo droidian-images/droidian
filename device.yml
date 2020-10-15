@@ -18,6 +18,8 @@ actions:
     description: install packages
     packages:
       - adaptation-hybris-devtools
+      - hybris-mobian-devtools
+      - strace
 
   - action: recipe
     description: Polish the image
