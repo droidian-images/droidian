@@ -13,6 +13,11 @@ actions:
       image: {{ $image }}
       output_type: {{ $output_type }}
 
+  - action: apt
+    chroot: true
+    description: install packages
+    packages:
+      - adaptation-hybris-devtools
 
   - action: recipe
     description: Polish the image
