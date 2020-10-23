@@ -7,7 +7,7 @@ actions:
 
   - action: recipe
     description: create rootfs
-    recipe: rootfs-templates/api28gsi_minimal.yaml
+    recipe: rootfs-templates/api28gsi_full_phone.yaml
     variables:
       architecture: {{ $architecture }}
       image: {{ $image }}
