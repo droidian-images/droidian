@@ -21,6 +21,11 @@ actions:
       - hybris-mobian-devtools
       - strace
 
+  - action: run
+    chroot: true
+    description: disable mobian's MTP and enable usb-tethering
+    command: systemctl disable mobian-usb-gadget; systemctl disable umtp-responder; systemctl enable usb-tethering
+
   - action: recipe
     description: Polish the image
     recipe: rootfs-templates/polish.yaml
