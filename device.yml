@@ -40,5 +40,10 @@ actions:
 
   - action: run
     chroot: false
+    description: delete uncompressed image
+    command: rm {{ $image }}
+
+  - action: run
+    chroot: false
     description: Show build output
     command: ls -lha
