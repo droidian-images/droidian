@@ -2,7 +2,8 @@ name: hybris-mobian rootfs-builder
 
 on:
   push:
-
+    tags:
+      - '**'
 jobs:
   once:
     runs-on: ubuntu-20.04

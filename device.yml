@@ -1,40 +1,39 @@
 {{- $architecture := or .architecture "arm64" -}}
-{{- $image := or .image (printf "hybrismobian-rootfs-api28gsi-%s.tar.gz" $architecture) -}}
+{{- $suffix := or .suffix "testbuild" -}}
+{{- $image := or .image (printf "hybris-mobian-rootfs-api28gsi-%s_%s.img" $architecture $suffix) -}}
 {{- $output_type := "tarball" -}}
 
 architecture: {{ $architecture }}
 actions:
 
   - action: recipe
-    description: create rootfs
+    description: Generate api28gsi phone rootfs
     recipe: rootfs-templates/api28gsi_full_phone.yaml
     variables:
       architecture: {{ $architecture }}
-      image: {{ $image }}
-      output_type: {{ $output_type }}
 
-  - action: apt
-    chroot: true
-    description: install packages
-    packages:
-      - adaptation-hybris-devtools
-      - hybris-mobian-devtools
-      - strace
-
-  - action: run
-    chroot: true
-    description: disable mobian's MTP and enable usb-tethering
-    command: systemctl disable mobian-usb-gadget; systemctl disable umtp-responder; systemctl enable usb-tethering
+  - action: recipe
+    description: Get devtools sideload's zip
+    recipe: rootfs-templates/recipes/gsi_get_sideload.yaml
+    variables:
+      architecture: {{ $architecture }}
+      sideload_name: hybris-mobian-devtools-{{ $architecture }}_{{ $suffix }}
+      packages: hybris-mobian-devtools openssh-server kgx hybris-usb
 
   - action: recipe
     description: Polish the image
-    recipe: rootfs-templates/polish.yaml
+    recipe: rootfs-templates/recipes/polish.yaml
     variables:
       architecture: {{ $architecture }}
       image: {{ $image }}
       output_type: {{ $output_type }}
 
-  - action: pack
-    description: Compressing image
-    file: {{ $image }}
-    compression: gz
+  - action: run
+    chroot: false
+    description: Generate flashable image
+    script: genimg.sh {{ $image }}
+
+  - action: run
+    chroot: false
+    description: Show build output
+    command: ls -lha
