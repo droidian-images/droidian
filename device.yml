@@ -35,5 +35,10 @@ actions:
 
   - action: run
     chroot: false
+    description: Compress rootfs image
+    command: gzip -c {{ $image }} > {{ $image }}.gz
+
+  - action: run
+    chroot: false
     description: Show build output
     command: ls -lha
