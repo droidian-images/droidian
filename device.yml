@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $suffix := or .suffix "testbuild" -}}
-{{- $image := or .image (printf "hybris-mobian-rootfs-api28gsi-%s_%s.img" $architecture $suffix) -}}
+{{- $image := or .image (printf "hybris-mobian-rootfs-api28gsi-%s%s.img" $architecture $suffix) -}}
 {{- $output_type := "tarball" -}}
 
 architecture: {{ $architecture }}
@@ -17,7 +17,7 @@ actions:
     recipe: rootfs-templates/recipes/gsi_get_sideload.yaml
     variables:
       architecture: {{ $architecture }}
-      sideload_name: hybris-mobian-devtools-{{ $architecture }}_{{ $suffix }}
+      sideload_name: hybris-mobian-devtools-{{ $architecture }}{{ $suffix }}
       packages: hybris-mobian-devtools openssh-server kgx hybris-usb
 
   - action: recipe
