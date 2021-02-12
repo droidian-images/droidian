@@ -19,6 +19,7 @@ mount -o loop $IMG_NAME ${IMG_MOUNTPOINT}
 # copy rootfs content
 echo "Syncing rootfs content"
 rsync --archive -H -A -X $ROOTFS_PATH/* ${IMG_MOUNTPOINT}
+rsync --archive -H -A -X $ROOTFS_PATH/.[^.]* ${IMG_MOUNTPOINT}
 sync
 echo "done."
 
