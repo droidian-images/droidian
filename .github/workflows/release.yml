@@ -90,3 +90,24 @@ jobs:
           asset_path: ./hybris-mobian-devtools-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
           asset_name: hybris-mobian-devtools-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
           asset_content_type: application/gzip
+
+      - name: "Check adaptation file existence"
+        id: check_adaptation_fxtec_pro1
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "hybris-mobian-adaptation-fxtec-pro1-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip"
+
+      - name: Upload adaptation-fxtec-pro1 sideload
+        id: upload-sideload-pro1
+        if: |
+          startsWith(github.ref, 'refs/tags/hybris-mobian') ||
+          steps.check_adaptation_fxtec_pro1.outputs.files_exists == 'true'
+
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.once.outputs.upload_url }}
+          asset_path: ./hybris-mobian-adaptation-fxtec-pro1-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
+          asset_name: hybris-mobian-adaptation-fxtec-pro1-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
+          asset_content_type: application/gzip
