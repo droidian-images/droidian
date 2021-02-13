@@ -8,21 +8,26 @@ IMG_MOUNTPOINT=".image"
 
 # create root img
 echo "Creating an empty root image"
-dd if=/dev/zero of=$IMG_NAME bs=1M count=${IMG_SIZE}
-mkfs.ext4 -O ^metadata_csum -O ^64bit -F $IMG_NAME
+dd if=/dev/zero of=rootfs.img bs=1M count=${IMG_SIZE}
+mkfs.ext4 -O ^metadata_csum -O ^64bit -F rootfs.img
 
 # mount the image
 echo "Mounting root image"
 mkdir -p $IMG_MOUNTPOINT
-mount -o loop $IMG_NAME ${IMG_MOUNTPOINT}
+mount -o loop rootfs.img ${IMG_MOUNTPOINT}
 
 # copy rootfs content
 echo "Syncing rootfs content"
 rsync --archive -H -A -X $ROOTFS_PATH/* ${IMG_MOUNTPOINT}
 rsync --archive -H -A -X $ROOTFS_PATH/.[^.]* ${IMG_MOUNTPOINT}
 sync
-echo "done."
 
 # umount the image
 echo "umount root image"
 umount $IMG_MOUNTPOINT
+
+# generate flashable zip
+echo "Generating recovery flashable zip"
+mv rootfs.img android-recovery-flashing-template
+zip -r9 $IMG_NAME android-recovery-flashing-template/* -x .git README.md *placeholder
+echo "done."

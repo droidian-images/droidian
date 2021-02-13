@@ -1,3 +1,6 @@
 [submodule "rootfs-templates"]
 	path = rootfs-templates
 	url = https://github.com/hybris-mobian-releng/rootfs-templates
+[submodule "android-recovery-flashing-template"]
+	path = android-recovery-flashing-template
+	url = https://github.com/hybris-mobian-releng/android-recovery-flashing-template.git

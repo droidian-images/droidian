@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $suffix := or .suffix "testbuild" -}}
-{{- $image := or .image (printf "hybris-mobian-rootfs-api28gsi-%s%s.img" $architecture $suffix) -}}
+{{- $image := or .image (printf "hybris-mobian-rootfs-api28gsi-%s%s.zip" $architecture $suffix) -}}
 {{- $output_type := "tarball" -}}
 
 architecture: {{ $architecture }}
@@ -39,18 +39,8 @@ actions:
 
   - action: run
     chroot: false
-    description: Generate flashable image
-    script: genimg.sh {{ $image }}
-
-  - action: run
-    chroot: false
-    description: Compress rootfs image
-    command: gzip -c {{ $image }} > {{ $image }}.gz
-
-  - action: run
-    chroot: false
-    description: delete uncompressed image
-    command: rm {{ $image }}
+    description: Generate flashable zip
+    script: genzip.sh {{ $image }}
 
   - action: run
     chroot: false

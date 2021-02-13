@@ -74,8 +74,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.once.outputs.upload_url }}
-          asset_path: ./hybris-mobian-rootfs-api28gsi-${{ matrix.debos_arch }}${{ env.release_suffix }}.img.gz
-          asset_name: hybris-mobian-rootfs-api28gsi-${{ matrix.debos_arch }}${{ env.release_suffix }}.img.gz
+          asset_path: ./hybris-mobian-rootfs-api28gsi-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
+          asset_name: hybris-mobian-rootfs-api28gsi-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
           asset_content_type: application/gzip
 
       - name: Upload devtools sideload
