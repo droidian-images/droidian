@@ -25,6 +25,7 @@ actions:
     recipe: rootfs-templates/recipes/gen_sideload_adaptation.yaml
     variables:
       architecture: {{ $architecture }}
+      device_arch: arm64
       sideload_name: hybris-mobian-adaptation-fxtec-pro1-{{ $architecture }}{{ $suffix }}
       packages: adaptation-fxtec-pro1
 
