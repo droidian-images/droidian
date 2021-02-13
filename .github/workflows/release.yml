@@ -69,7 +69,6 @@ jobs:
 
       - name: Upload Rootfs image
         id: upload-rootfs
-        if: startsWith(github.ref, 'refs/tags/hybris-mobian')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +80,6 @@ jobs:
 
       - name: Upload devtools sideload
         id: upload-sideload
-        if: startsWith(github.ref, 'refs/tags/hybris-mobian')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -98,11 +96,8 @@ jobs:
           files: "hybris-mobian-adaptation-fxtec-pro1-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip"
 
       - name: Upload adaptation-fxtec-pro1 sideload
+        if: steps.check_adaptation_fxtec_pro1.outputs.files_exists == 'true'
         id: upload-sideload-pro1
-        if: |
-          startsWith(github.ref, 'refs/tags/hybris-mobian') ||
-          steps.check_adaptation_fxtec_pro1.outputs.files_exists == 'true'
-
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
