@@ -14,11 +14,19 @@ actions:
 
   - action: recipe
     description: Get devtools sideload's zip
-    recipe: rootfs-templates/recipes/gsi_get_sideload.yaml
+    recipe: rootfs-templates/recipes/gen_sideload_gsi.yaml
     variables:
       architecture: {{ $architecture }}
       sideload_name: hybris-mobian-devtools-{{ $architecture }}{{ $suffix }}
       packages: hybris-mobian-devtools openssh-server kgx hybris-usb
+
+  - action: recipe
+    description: Get adaptation-fxtec-pro1 sideload's zip
+    recipe: rootfs-templates/recipes/gen_sideload_adaptation.yaml
+    variables:
+      architecture: {{ $architecture }}
+      sideload_name: hybris-mobian-adaptation-fxtec-pro1-{{ $architecture }}{{ $suffix }}
+      packages: adaptation-fxtec-pro1
 
   - action: recipe
     description: Polish the image
