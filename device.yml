@@ -14,7 +14,7 @@ actions:
 
   - action: recipe
     description: Get devtools sideload's zip
-    recipe: rootfs-templates/recipes/gen_sideload_gsi.yaml
+    recipe: rootfs-templates/recipes/sideload-create.yaml
     variables:
       architecture: {{ $architecture }}
       sideload_name: hybris-mobian-devtools-{{ $architecture }}{{ $suffix }}
@@ -22,7 +22,7 @@ actions:
 
   - action: recipe
     description: Get adaptation-fxtec-pro1 sideload's zip
-    recipe: rootfs-templates/recipes/gen_sideload_adaptation.yaml
+    recipe: rootfs-templates/recipes/sideload-create.yaml
     variables:
       architecture: {{ $architecture }}
       device_arch: arm64
