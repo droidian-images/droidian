@@ -2,6 +2,10 @@ name: hybris-mobian rootfs test build
 
 on:
   push:
+    branches:
+    - '**'
+    tags-ignore:
+      - '**'
 
 jobs:
   build:
