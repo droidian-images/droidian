@@ -2,7 +2,7 @@
 ROOTFS_PATH=$(find . -maxdepth 1 -mindepth 1 -type d -name .debos-*)/root
 ROOTFS_SIZE=$(du -sm $ROOTFS_PATH | awk '{ print $1 }')
 
-IMG_NAME=$1
+ZIP_NAME=$1
 IMG_SIZE=$(( ${ROOTFS_SIZE} + 250 )) # FIXME 250MB contingency
 IMG_MOUNTPOINT=".image"
 
@@ -29,5 +29,6 @@ umount $IMG_MOUNTPOINT
 # generate flashable zip
 echo "Generating recovery flashable zip"
 mv rootfs.img android-recovery-flashing-template
-zip -r9 $IMG_NAME android-recovery-flashing-template/* -x .git README.md *placeholder
+(cd android-recovery-flashing-template ; zip -r9 ../$ZIP_NAME * -x .git README.md *placeholder)
+
 echo "done."
