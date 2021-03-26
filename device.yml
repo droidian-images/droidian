@@ -18,7 +18,7 @@ actions:
     variables:
       architecture: {{ $architecture }}
       sideload_name: droidian-devtools-{{ $architecture }}{{ $suffix }}
-      packages: droidian-devtools openssh-server kgx hybris-usb
+      packages: droidian-devtools adaptation-hybris-devtools
 
   - action: recipe
     description: Get adaptation-fxtec-pro1 sideload's zip
