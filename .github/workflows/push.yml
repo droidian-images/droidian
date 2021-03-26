@@ -1,4 +1,4 @@
-name: hybris-mobian rootfs test build
+name: droidian rootfs test build
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
         arch: [amd64]
         template: [rootfs-builder]
         dist: [bullseye]
-        namespace: [hybrismobian]
+        namespace: [droidian]
         debos_arch: [amd64,armhf,arm64]
 
     name: ${{ matrix.template }}:${{ matrix.dist }} on ${{ matrix.debos_arch }}
