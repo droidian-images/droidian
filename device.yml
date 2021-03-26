@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $suffix := or .suffix "testbuild" -}}
-{{- $image := or .image (printf "hybris-mobian-rootfs-api28gsi-%s%s.zip" $architecture $suffix) -}}
+{{- $image := or .image (printf "droidian-rootfs-api28gsi-%s%s.zip" $architecture $suffix) -}}
 {{- $output_type := "tarball" -}}
 
 architecture: {{ $architecture }}
@@ -17,8 +17,8 @@ actions:
     recipe: rootfs-templates/recipes/sideload-create.yaml
     variables:
       architecture: {{ $architecture }}
-      sideload_name: hybris-mobian-devtools-{{ $architecture }}{{ $suffix }}
-      packages: hybris-mobian-devtools openssh-server kgx hybris-usb
+      sideload_name: droidian-devtools-{{ $architecture }}{{ $suffix }}
+      packages: droidian-devtools openssh-server kgx hybris-usb
 
   - action: recipe
     description: Get adaptation-fxtec-pro1 sideload's zip
@@ -26,7 +26,7 @@ actions:
     variables:
       architecture: {{ $architecture }}
       device_arch: arm64
-      sideload_name: hybris-mobian-adaptation-fxtec-pro1-{{ $architecture }}{{ $suffix }}
+      sideload_name: droidian-adaptation-fxtec-pro1-{{ $architecture }}{{ $suffix }}
       packages: adaptation-fxtec-pro1 adaptation-fxtec-pro1-configs
 
   - action: recipe
