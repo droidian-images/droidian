@@ -30,6 +30,15 @@ actions:
       packages: adaptation-fxtec-pro1 adaptation-fxtec-pro1-configs
 
   - action: recipe
+    description: Get adaptation-google-sargo sideload's zip
+    recipe: rootfs-templates/recipes/sideload-create.yaml
+    variables:
+      architecture: {{ $architecture }}
+      device_arch: arm64
+      sideload_name: droidian-adaptation-google-sargo-{{ $architecture }}{{ $suffix }}
+      packages: adaptation-google-sargo adaptation-google-sargo-configs
+
+  - action: recipe
     description: Polish the image
     recipe: rootfs-templates/recipes/polish.yaml
     variables:
