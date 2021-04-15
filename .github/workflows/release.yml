@@ -154,3 +154,21 @@ jobs:
           asset_path: ./droidian-adaptation-google-sargo-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
           asset_name: droidian-adaptation-google-sargo-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
           asset_content_type: application/gzip
+
+      - name: "Check adaptation file existence"
+        id: check_adaptation_volla_yggdrasil
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "droidian-adaptation-volla-yggdrasil-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip"
+
+      - name: Upload adaptation-volla-yggdrasil sideload
+        if: steps.check_adaptation_volla_yggdrasil.outputs.files_exists == 'true'
+        id: upload-sideload-yggdrasil
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.once.outputs.upload_url }}
+          asset_path: ./droidian-adaptation-volla-yggdrasil-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
+          asset_name: droidian-adaptation-volla-yggdrasil-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
+          asset_content_type: application/gzip
