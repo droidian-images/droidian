@@ -1,16 +1,17 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $suffix := or .suffix "testbuild" -}}
-{{- $image := or .image (printf "droidian-rootfs-api28gsi-%s%s.zip" $architecture $suffix) -}}
+{{- $image := or .image (printf "droidian-rootfs-api29gsi-%s%s.zip" $architecture $suffix) -}}
 {{- $output_type := "tarball" -}}
 
 architecture: {{ $architecture }}
 actions:
 
   - action: recipe
-    description: Generate api28gsi phone rootfs
-    recipe: rootfs-templates/api28gsi_full_phone.yaml
+    description: Generate api29gsi phone rootfs
+    recipe: rootfs-templates/gsi_full_phone.yaml
     variables:
       architecture: {{ $architecture }}
+      apilevel: 29
 
   - action: recipe
     description: Get devtools sideload's zip
@@ -19,33 +20,6 @@ actions:
       architecture: {{ $architecture }}
       sideload_name: droidian-devtools-{{ $architecture }}{{ $suffix }}
       packages: droidian-devtools adaptation-hybris-devtools
-
-  - action: recipe
-    description: Get adaptation-fxtec-pro1 sideload's zip
-    recipe: rootfs-templates/recipes/sideload-create.yaml
-    variables:
-      architecture: {{ $architecture }}
-      device_arch: arm64
-      sideload_name: droidian-adaptation-fxtec-pro1-{{ $architecture }}{{ $suffix }}
-      packages: adaptation-fxtec-pro1 adaptation-fxtec-pro1-configs
-
-  - action: recipe
-    description: Get adaptation-google-sargo sideload's zip
-    recipe: rootfs-templates/recipes/sideload-create.yaml
-    variables:
-      architecture: {{ $architecture }}
-      device_arch: arm64
-      sideload_name: droidian-adaptation-google-sargo-{{ $architecture }}{{ $suffix }}
-      packages: adaptation-google-sargo adaptation-google-sargo-configs
-
-  - action: recipe
-    description: Get adaptation-volla-yggdrasil sideload's zip
-    recipe: rootfs-templates/recipes/sideload-create.yaml
-    variables:
-      architecture: {{ $architecture }}
-      device_arch: arm64
-      sideload_name: droidian-adaptation-volla-yggdrasil-{{ $architecture }}{{ $suffix }}
-      packages: adaptation-volla-yggdrasil adaptation-volla-yggdrasil-configs
 
   - action: recipe
     description: Polish the image
