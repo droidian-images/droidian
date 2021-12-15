@@ -63,7 +63,7 @@ jobs:
       matrix:
         arch: [amd64]
         template: [rootfs-builder]
-        dist: [bullseye]
+        dist: [bookworm]
         namespace: [droidian]
         debos_arch: [amd64,armhf,arm64]
 
