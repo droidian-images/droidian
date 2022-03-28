@@ -111,7 +111,14 @@ jobs:
           asset_name: droidian-rootfs-api29gsi-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip
           asset_content_type: application/gzip
 
+      - name: "Check devtools file existence"
+        id: check_devtools
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "droidian-devtools-${{ matrix.debos_arch }}${{ env.release_suffix }}.zip"
+
       - name: Upload devtools sideload
+        if: steps.check_devtools.outputs.files_exists == 'true'
         id: upload-sideload
         uses: actions/upload-release-asset@v1
         env:
