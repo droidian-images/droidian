@@ -48,5 +48,5 @@ jobs:
         run: echo CONTAINER_HASH=$(docker run --detach --privileged -v /tmp/buildd-results:/buildd -v /dev:/dev -v /sys/fs/cgroup:/sys/fs/cgroup -v ${PWD}:/buildd/sources --security-opt seccomp:unconfined quay.io/${{ matrix.namespace }}/${{ matrix.template }}:${{ matrix.dist }}-${{ matrix.arch }} /sbin/init) >> $GITHUB_ENV
 
       - name: Build rootfs
-        run: docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; debos -t architecture:${{ matrix.debos_arch }} -t suffix:${{ env.release_suffix }} device.yml'
+        run: docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; debos -t architecture:${{ matrix.debos_arch }} -t suffix:${{ env.release_suffix }} -t version:nightly device.yml'
 
