@@ -77,7 +77,12 @@ jobs:
       - name: Set suffix
         run: echo "release_suffix=_${{ env.current_date }}" >> $GITHUB_ENV
 
+      - name: Set nightly version
+        if: startsWith(github.ref, 'refs/tags/droidian') != true
+        run: echo "version=nightly" >> $GITHUB_ENV
+
       - name: Set version
+        if: startsWith(github.ref, 'refs/tags/droidian') == true
         run: echo "version=$(echo ${{ github.ref }} | rev | cut -d'/' -f1 | rev)" >> $GITHUB_ENV
 
       - name: Checkout
