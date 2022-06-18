@@ -20,6 +20,8 @@ SUITABLE_FILES = [
 	"devices.yml",
 ]
 
+IS_COMMUNITY_PORT = False
+
 BUILDER_MAIN_DIRECTORY = os.path.abspath(os.path.dirname(sys.argv[0]))
 BUILDER_GENERATED_DIRECTORY = os.path.join(BUILDER_MAIN_DIRECTORY, "generated")
 BUILDER_OUT_DIRECTORY = os.path.join(BUILDER_MAIN_DIRECTORY, "out")
@@ -32,8 +34,10 @@ TEMPLATE = """
 {{- $variant := or .variant "%(variant)s" -}}
 {{- $apilevel := or .apilevel %(apilevel)d -}}
 {{- $version := or .version "%(version)s" -}}
-{{- $image := or .image (printf "droidian-%%s-%%s-%%s-api%%d-%%s-%%s_%%s.zip" $edition $variant $product $apilevel $architecture $version $suffix) -}}
+{{- $mtype := or .mtype "%(mtype)s" -}}
+{{- $image := or .image (printf "droidian-%%s-%%s-%%s-%%s-api%%d-%%s-%%s_%%s.zip" $mtype $edition $variant $product $apilevel $architecture $version $suffix) -}}
 {{- $output_type := or .output_type "%(output_type)s" -}}
+{{- $use_internal_repository := or .use_internal_repository "%(use_internal_repository)s" -}}
 
 architecture: {{ $architecture }}
 actions:
@@ -69,6 +73,7 @@ TEMPLATE_ENTRYPOINT = """
       version: {{ $version }}
       image: {{ $image }}
       output_type: {{ $output_type }}
+      use_internal_repository: {{ $use_internal_repository }}
 """
 
 TEMPLATE_BUNDLE = """
@@ -140,9 +145,11 @@ def generate_recipe_for_product(contents, product, arch, edition, variant, apile
 		"edition" : edition,
 		"variant" : variant,
 		"apilevel" : int(apilevel),
+		"mtype" : "OFFICIAL" if not IS_COMMUNITY_PORT else "UNOFFICIAL",
 		"version" : os.environ.get("DROIDIAN_VERSION", "nightly"),
 		"suffix" : datetime.datetime.utcnow().strftime("%Y%m%d"),
 		"output_type" : config["type"],
+		"use_internal_repository" : "yes" if config.get("use_internal_repository", False) else "no",
 	}
 
 	# TODO: perhaps use pyyaml?
@@ -215,6 +222,7 @@ def prompt_product(contents):
 
 if __name__ == "__main__":
 	contents = {}
+
 	for candidate in SUITABLE_FILES:
 		path = os.path.join(BUILDER_MAIN_DIRECTORY, candidate)
 		if not os.path.exists(path):
@@ -222,6 +230,9 @@ if __name__ == "__main__":
 
 		with open(path, "r") as f:
 			contents = yaml.safe_load(f)
+
+		if candidate == "community_devices.yml":
+			IS_COMMUNITY_PORT = True
 
 		break
 
