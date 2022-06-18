@@ -54,6 +54,9 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          lfs: 'true'
+          submodules: 'recursive'
 
       - name: Checkout submodules
         run: git submodule update --init --recursive
