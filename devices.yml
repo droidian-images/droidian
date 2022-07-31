@@ -12,6 +12,11 @@
     - adaptation-fxtec-pro1
     - adaptation-fxtec-pro1-configs
 
+.fxtec_pro1x_packages:
+  packages: &fxtec_pro1x_packages
+    - adaptation-fxtec-pro1x
+    - adaptation-fxtec-pro1x-configs
+
 .sony_bahamut_packages:
   packages: &sony_bahamut_packages
     - adaptation-sony-bahamut
@@ -65,6 +70,16 @@ fxtec_pro1:
   apilevel: 28
 
   packages: *fxtec_pro1_packages
+
+# F(x)tec Pro1-X (qx1050)
+fxtec_pro1x:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 30
+
+  packages: *fxtec_pro1x_packages
 
 #
 # Sony
