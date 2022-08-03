@@ -83,7 +83,7 @@ TEMPLATE_BUNDLE = """
     variables:
       architecture: %(architecture)s
       device_arch: %(architecture)s
-      sideload_name: %(name)s-%(architecture)s_{{ $suffix }}
+      sideload_name: %(name)s-api%(apilevel)d-%(architecture)s_{{ $suffix }}
       packages: %(packages)s
 """
 
@@ -171,7 +171,8 @@ def generate_recipe_for_product(contents, product, arch, edition, variant, apile
 						TEMPLATE_BUNDLE % {
 							"name" : bundle["name"],
 							"architecture" : arch,
-							"packages" : " ".join(bundle["packages"])
+							"packages" : " ".join(bundle["packages"]),
+							"apilevel" : int(apilevel),
 						}
 					)
 
