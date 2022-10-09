@@ -28,7 +28,7 @@
 
 rootfs:
   type: rootfs
-  arch: [arm64,]
+  arch: [armhf, arm64]
   edition: phosh
   variant: phone
   apilevel: [28, 29, 30]
