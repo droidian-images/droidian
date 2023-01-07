@@ -3,7 +3,7 @@
 	url = https://github.com/hybris-mobian-releng/rootfs-templates
 [submodule "android-recovery-flashing-template"]
 	path = android-recovery-flashing-template
-	url = https://github.com/hybris-mobian-releng/android-recovery-flashing-template.git
+	url = https://github.com/droidian-releng/android-recovery-flashing-template.git
 [submodule "android-image-flashing-template"]
 	path = android-image-flashing-template
 	url = https://github.com/droidian-releng/android-image-flashing-template.git
