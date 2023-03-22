@@ -17,6 +17,11 @@
     - adaptation-fxtec-pro1x
     - adaptation-fxtec-pro1x-configs
 
+.google_sargo_packages:
+  packages: &google_sargo_packages
+    - adaptation-google-sargo
+    - adaptation-google-sargo-configs
+
 .sony_bahamut_packages:
   packages: &sony_bahamut_packages
     - adaptation-sony-bahamut
@@ -80,6 +85,20 @@ fxtec_pro1x:
   apilevel: 30
 
   packages: *fxtec_pro1x_packages
+
+#
+# Google
+#
+
+# Google Pixel 3a (sargo)
+google_sargo:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 28
+
+  packages: *google_sargo_packages
 
 #
 # Sony
