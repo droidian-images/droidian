@@ -27,6 +27,11 @@
     - adaptation-sony-bahamut
     - adaptation-sony-bahamut-configs
 
+.volla_yggdrasil_packages:
+  packages: &volla_yggdrasil_packages
+    - adaptation-volla-yggdrasil
+    - adaptation-volla-yggdrasil-configs
+
 ########################################################################
 # Recovery-flashable rootfses                                          #
 ########################################################################
@@ -113,3 +118,17 @@ sony_bahamut:
   apilevel: 30
 
   packages: *sony_bahamut_packages
+
+#
+# Volla
+#
+
+# Volla Phone (yggdrasil)
+volla_yggdrasil:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 28
+
+  packages: *volla_yggdrasil_packages
