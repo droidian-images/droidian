@@ -27,6 +27,11 @@
     - adaptation-sony-bahamut
     - adaptation-sony-bahamut-configs
 
+.volla_mimameid_packages:
+  packages: &volla_mimameid_packages
+    - adaptation-volla-mimameid
+    - adaptation-volla-mimameid-configs
+
 .volla_yggdrasil_packages:
   packages: &volla_yggdrasil_packages
     - adaptation-volla-yggdrasil
@@ -132,3 +137,13 @@ volla_yggdrasil:
   apilevel: 28
 
   packages: *volla_yggdrasil_packages
+
+# Volla Phone 22 (mimameid)
+volla_mimameid:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 30
+
+  packages: *volla_mimameid_packages
