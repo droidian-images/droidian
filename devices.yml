@@ -37,6 +37,11 @@
     - adaptation-volla-yggdrasil
     - adaptation-volla-yggdrasil-configs
 
+.xiaomi_angelica_packages:
+  packages: &xiaomi_angelica_packages
+    - adaptation-droidian-angelica
+    - adaptation-angelica-configs
+
 .xiaomi_miatoll_packages:
   packages: &xiaomi_miatoll_packages
     - adaptation-xiaomi-miatoll
@@ -156,6 +161,16 @@ volla_mimameid:
 #
 # Xiaomi
 #
+
+# Xiaomi Redmi 9C (angelica)
+xiaomi_angelica:
+  type: image
+  arch: armhf
+  edition: phosh
+  variant: phone
+  apilevel: 29
+
+  packages: *xiaomi_angelica_packages
 
 # Xiaomi Redmi Note 9S/9 Pro/9 Pro Max/M2 Pro (miatoll)
 xiaomi_miatoll:
