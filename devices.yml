@@ -37,6 +37,11 @@
     - adaptation-volla-yggdrasil
     - adaptation-volla-yggdrasil-configs
 
+.xiaomi_miatoll_packages:
+  packages: &xiaomi_miatoll_packages
+    - adaptation-xiaomi-miatoll
+    - adaptation-miatoll-configs
+
 ########################################################################
 # Recovery-flashable rootfses                                          #
 ########################################################################
@@ -147,3 +152,17 @@ volla_mimameid:
   apilevel: 30
 
   packages: *volla_mimameid_packages
+
+#
+# Xiaomi
+#
+
+# Xiaomi Redmi Note 9S/9 Pro/9 Pro Max/M2 Pro (miatoll)
+xiaomi_miatoll:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 29
+
+  packages: *xiaomi_miatoll_packages
