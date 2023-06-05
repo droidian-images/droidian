@@ -37,6 +37,11 @@
     - adaptation-volla-yggdrasil
     - adaptation-volla-yggdrasil-configs
 
+.xiaomi_lavender_packages:
+  packages: &xiaomi_lavender_packages
+    - adaptation-droidian-lavender
+    - adaptation-lavender-configs
+
 .xiaomi_angelica_packages:
   packages: &xiaomi_angelica_packages
     - adaptation-droidian-angelica
@@ -166,6 +171,16 @@ volla_mimameid:
 #
 # Xiaomi
 #
+
+# Xiaomi Redmi Note 7 (lavender)
+xiaomi_lavender:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 28
+
+  packages: *xiaomi_lavender_packages
 
 # Xiaomi Redmi 9C (angelica)
 xiaomi_angelica:
