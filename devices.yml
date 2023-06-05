@@ -37,6 +37,11 @@
     - adaptation-volla-yggdrasil
     - adaptation-volla-yggdrasil-configs
 
+.xiaomi_onclite_packages:
+  packages: &xiaomi_onclite_packages
+    - adaptation-droidian-onclite
+    - adaptation-onclite-configs
+
 .xiaomi_lavender_packages:
   packages: &xiaomi_lavender_packages
     - adaptation-droidian-lavender
@@ -171,6 +176,16 @@ volla_mimameid:
 #
 # Xiaomi
 #
+
+# Xiaomi Redmi 7 (onclite)
+xiaomi_onclite:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 28
+
+  packages: *xiaomi_onclite_packages
 
 # Xiaomi Redmi Note 7 (lavender)
 xiaomi_lavender:
