@@ -62,6 +62,11 @@
     - adaptation-droidian-starqlte
     - adaptation-starqlte-configs
 
+.oneplus_oneplus3_packages:
+  packages: &oneplus_oneplus3_packages
+    - adaptation-droidian-oneplus3
+    - adaptation-oneplus3-configs
+
 ########################################################################
 # Recovery-flashable rootfses                                          #
 ########################################################################
@@ -230,3 +235,17 @@ samsung_starqlte:
   apilevel: 29
 
   packages: *samsung_starqlte_packages
+
+#
+# OnePlus
+#
+
+# OnePlus 3/3T (oneplus3)
+oneplus_oneplus3:
+  type: rootfs
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 28
+
+  packages: *oneplus_oneplus3_packages
