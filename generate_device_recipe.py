@@ -178,6 +178,13 @@ def generate_recipe_for_product(contents, product, arch, edition, variant, apile
 
 					if write_end:
 						f.write(TEMPLATE_END)
+		elif config["type"] == "rootfs" and config.get("packages", []):
+			f.write(
+				TEMPLATE_IMAGE_ADAPTATION % {
+					"architecture" : arch,
+					"packages" : " ".join(config["packages"])
+				}
+			)
 		elif config["type"] == "image":
 			f.write(
 				TEMPLATE_IMAGE_ADAPTATION % {
