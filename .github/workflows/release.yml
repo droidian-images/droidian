@@ -93,6 +93,16 @@ jobs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}${{ steps.create_nightly.outputs.upload_url }}
 
     steps:
+      - name: Free up some storage
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
+
       - name: Delete old nightly release
         uses: dev-drprasad/delete-tag-and-release@v0.2.1
         if: startsWith(github.ref, 'refs/tags/droidian') != true
