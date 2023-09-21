@@ -12,15 +12,16 @@ There are two different types of images:
 * Fastboot-flashable image
 * Recovery-flashable zipfile
 
-Fastboot-flashable images are, instead, the recommended way to install Droidian. These images are device specific, so if you want one for your device you should create one yourself.  
+Fastboot-flashable images are, instead, the recommended way to install Droidian. These images are device specific, so if you want one for your device you should create one yourself.
 Fastboot-flashable images support Full Disk Encryption, and make use of the whole userdata partition.
 
-The recovery flashable zipfile needs to be flashed via a suitable Android recovery (such as TWRP). Recovery flashable zipfiles are generic, and are useful to test drive Droidian or in early device porting stages.  
+The recovery flashable zipfile needs to be flashed via a suitable Android recovery (such as TWRP). Recovery flashable zipfiles are generic, and are useful to test drive Droidian or in early device porting stages.
 You should pick up the correct zipfile for your specific device:
 
 * Device with an Android 9 vendor: api28
 * Device with an Android 10 vendor: api29
 * Device with an Android 11 vendor: api30
+* Device with an Android 12/12.1 vendor: api32
 
 If you're in doubt, and there is a fastboot-flashable image available for your device, it's recommended to use that.
 
