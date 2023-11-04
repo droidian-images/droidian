@@ -170,7 +170,7 @@ volla_yggdrasil:
 
 # Volla Phone 22 (mimameid)
 volla_mimameid:
-  type: image
+  type: rootfs
   arch: arm64
   edition: phosh
   variant: phone
