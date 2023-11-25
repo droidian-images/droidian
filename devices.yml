@@ -67,6 +67,24 @@
     - adaptation-droidian-oneplus3
     - adaptation-oneplus3-configs
 
+.samsung_starlte_packages:
+  packages: &samsung_starlte_packages
+    - adaptation-droidian-exynos9810
+    - adaptation-exynos9810-configs
+    - linux-bootimage-samsung-starlte
+
+.samsung_star2lte_packages:
+  packages: &samsung_star2lte_packages
+    - adaptation-droidian-exynos9810
+    - adaptation-exynos9810-configs
+    - linux-bootimage-samsung-star2lte
+
+.samsung_crownlte_packages:
+  packages: &samsung_crownlte_packages
+    - adaptation-droidian-exynos9810
+    - adaptation-exynos9810-configs
+    - linux-bootimage-samsung-crownlte
+
 ########################################################################
 # Recovery-flashable rootfses                                          #
 ########################################################################
@@ -235,6 +253,36 @@ samsung_starqlte:
   apilevel: 29
 
   packages: *samsung_starqlte_packages
+
+# Samsung Galaxy S9 (Exynos) (starlte)
+samsung_starlte:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 29
+
+  packages: *samsung_starlte_packages
+
+# Samsung Galaxy S9+ (Exynos) (star2lte)
+samsung_star2lte:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 29
+
+  packages: *samsung_star2lte_packages
+
+# Samsung Galaxy Note 9 (Exynos) (crownlte)
+samsung_crownlte:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 29
+
+  packages: *samsung_crownlte_packages
 
 #
 # OnePlus
