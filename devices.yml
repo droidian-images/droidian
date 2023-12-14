@@ -290,7 +290,7 @@ samsung_crownlte:
 
 # OnePlus 3/3T (oneplus3)
 oneplus_oneplus3:
-  type: rootfs
+  type: image
   arch: arm64
   edition: phosh
   variant: phone
