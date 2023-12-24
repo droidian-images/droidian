@@ -85,6 +85,11 @@
     - adaptation-exynos9810-configs
     - linux-bootimage-samsung-crownlte
 
+.daria_zahedan_packages:
+  packages: &daria_zahedan_packages
+    - adaptation-droidian-zahedan
+    - adaptation-zahedan-configs
+
 ########################################################################
 # Recovery-flashable rootfses                                          #
 ########################################################################
@@ -297,3 +302,17 @@ oneplus_oneplus3:
   apilevel: 28
 
   packages: *oneplus_oneplus3_packages
+
+#
+# Daria
+#
+
+# Daria Bond (zahedan)
+daria_zahedan:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 32
+
+  packages: *daria_zahedan_packages
