@@ -1,0 +1,2 @@
+# You can add here your custom apt repositories
+deb https://yuztra.github.io/droidian-pkg-repo stable main
