@@ -6,7 +6,7 @@ xiaomi_merlin:
   arch: arm64
   edition: phosh
   variant: phone
-  apilevel: 30
+  apilevel: 29
   use_internal_repository: false
 
   packages:
