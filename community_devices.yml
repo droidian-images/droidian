@@ -1,5 +1,3 @@
-# This file has been generated automatically by droidian-new-device
-
 # xiaomi merlin
 xiaomi_merlin:
   type: image
@@ -15,3 +13,19 @@ xiaomi_merlin:
     - linux-bootimage-xiaomi-merlin
     - linux-headers-xiaomi-merlin
     - linux-image-xiaomi-merlin
+
+# xiaomi merlinx
+xiaomi_merlinx:
+  type: image
+  arch: arm64
+  edition: phosh
+  variant: phone
+  apilevel: 30
+  use_internal_repository: false
+
+  packages:
+    - adaptation-xiaomi-merlinx
+    - adaptation-xiaomi-merlinx-configs
+    - linux-bootimage-xiaomi-merlinx
+    - linux-headers-xiaomi-merlinx
+    - linux-image-xiaomi-merlinx
