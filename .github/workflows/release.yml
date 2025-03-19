@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
   push:
   schedule:
-    - cron: "59 23 * * *"
+    - cron: "00 01 * * *"
 
 jobs:
   once:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: Generate matrix
     outputs:
       matrix: ${{ steps.gen-matrix.outputs.matrix }}
@@ -24,7 +24,7 @@ jobs:
           echo "matrix=${JOBS}" >> $GITHUB_OUTPUT
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: once
 
     strategy:
@@ -86,7 +86,7 @@ jobs:
           retention-days: 1
 
   prepare:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: Create GitHub release
     needs: build
     outputs:
@@ -150,7 +150,7 @@ jobs:
           prerelease: true
 
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [once, prepare]
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}${{ steps.create_nightly.outputs.upload_url }}
