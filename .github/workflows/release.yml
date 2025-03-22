@@ -10,7 +10,7 @@ on:
 
 jobs:
   once:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: Generate matrix
     outputs:
       matrix: ${{ steps.gen-matrix.outputs.matrix }}
@@ -26,7 +26,7 @@ jobs:
           echo ::set-output name=matrix::${JOBS}
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: once
 
     strategy:
@@ -88,7 +88,7 @@ jobs:
           retention-days: 1
 
   prepare:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: Create GitHub release
     needs: build
     outputs:
@@ -158,7 +158,7 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [once, prepare]
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}${{ steps.create_nightly.outputs.upload_url }}
