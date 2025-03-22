@@ -2,11 +2,14 @@ name: lindroid rootfs-builder
 
 on:
   workflow_dispatch:
+#<<<<<<< Flower
   push:
     branches:
       - trixie
   schedule:
     - cron: "59 23 * * *"
+#=======
+#>>>>>>> bookworm
 
 jobs:
   once:
