@@ -1,9 +1,9 @@
 [submodule "rootfs-templates"]
 	path = rootfs-templates
-	url = https://github.com/droidian-releng/rootfs-templates
+	url = https://github.com/dls-os/rootfs-templates
 [submodule "android-recovery-flashing-template"]
 	path = android-recovery-flashing-template
-	url = https://github.com/droidian-releng/android-recovery-flashing-template.git
+	url = https://github.com/dls-os/android-recovery-flashing-template.git
 [submodule "android-image-flashing-template"]
 	path = android-image-flashing-template
-	url = https://github.com/droidian-releng/android-image-flashing-template.git
+	url = https://github.com/dls-os/android-image-flashing-template.git
