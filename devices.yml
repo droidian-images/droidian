@@ -11,40 +11,40 @@
   packages: &adaptation_generic_packages
     - adaptation-android-generic
 
-.fxtec_pro1_packages:
-  packages: &fxtec_pro1_packages
-    - adaptation-fxtec-pro1
-    - adaptation-fxtec-pro1-configs
+#.fxtec_pro1_packages:
+#  packages: &fxtec_pro1_packages
+#    - adaptation-fxtec-pro1
+#    - adaptation-fxtec-pro1-configs
 
-.fxtec_pro1x_packages:
-  packages: &fxtec_pro1x_packages
-    - adaptation-fxtec-pro1x
-    - adaptation-fxtec-pro1x-configs
+#.fxtec_pro1x_packages:
+#  packages: &fxtec_pro1x_packages
+#    - adaptation-fxtec-pro1x
+#    - adaptation-fxtec-pro1x-configs
 
 .google_sargo_packages:
   packages: &google_sargo_packages
     - adaptation-google-sargo
     - adaptation-google-sargo-configs
 
-.sony_bahamut_packages:
-  packages: &sony_bahamut_packages
-    - adaptation-sony-bahamut
-    - adaptation-sony-bahamut-configs
+#.sony_bahamut_packages:
+#  packages: &sony_bahamut_packages
+#    - adaptation-sony-bahamut
+#    - adaptation-sony-bahamut-configs
 
-.volla_mimameid_packages:
-  packages: &volla_mimameid_packages
-    - adaptation-volla-mimameid
-    - adaptation-volla-mimameid-configs
+#.volla_mimameid_packages:
+#  packages: &volla_mimameid_packages
+#    - adaptation-volla-mimameid
+#    - adaptation-volla-mimameid-configs
 
-.volla_yggdrasil_packages:
-  packages: &volla_yggdrasil_packages
-    - adaptation-volla-yggdrasil
-    - adaptation-volla-yggdrasil-configs
+#.volla_yggdrasil_packages:
+#  packages: &volla_yggdrasil_packages
+#    - adaptation-volla-yggdrasil
+#    - adaptation-volla-yggdrasil-configs
 
-.xiaomi_miatoll_packages:
-  packages: &xiaomi_miatoll_packages
-    - adaptation-xiaomi-miatoll
-    - adaptation-miatoll-configs
+#.xiaomi_miatoll_packages:
+#  packages: &xiaomi_miatoll_packages
+#    - adaptation-xiaomi-miatoll
+#    - adaptation-miatoll-configs
 
 ########################################################################
 # Recovery-flashable rootfses                                          #
@@ -55,7 +55,7 @@ rootfs:
   arch: [armhf, arm64]
   edition: phosh
   variant: phone
-  apilevel: [28, 29, 30, 32, 33]
+  apilevel: [28]
 
   packages: *adaptation_generic_packages
 
@@ -76,26 +76,26 @@ rootfs:
 #
 
 # F(x)tec Pro1 (qx1000)
-fxtec_pro1:
-  type: image
-  arch: arm64
-  edition: phosh
-  variant: phone
-  apilevel: 28
-  droidian_variant: fxtec
+#fxtec_pro1:
+#  type: image
+#  arch: arm64
+#  edition: phosh
+#  variant: phone
+#  apilevel: 28
+#  droidian_variant: fxtec
 
-  packages: *fxtec_pro1_packages
+#  packages: *fxtec_pro1_packages
 
 # F(x)tec Pro1-X (qx1050)
-fxtec_pro1x:
-  type: image
-  arch: arm64
-  edition: phosh
-  variant: phone
-  apilevel: 30
-  droidian_variant: fxtec
+#fxtec_pro1x:
+#  type: image
+#  arch: arm64
+#  edition: phosh
+#  variant: phone
+#  apilevel: 30
+#  droidian_variant: fxtec
 
-  packages: *fxtec_pro1x_packages
+#  packages: *fxtec_pro1x_packages
 
 #
 # Google
@@ -116,49 +116,49 @@ google_sargo:
 #
 
 # Sony Xperia 5 (bahamut)
-sony_bahamut:
-  type: image
-  arch: arm64
-  edition: phosh
-  variant: phone
-  apilevel: 30
+#sony_bahamut:
+#  type: image
+#  arch: arm64
+#  edition: phosh
+#  variant: phone
+#  apilevel: 30
 
-  packages: *sony_bahamut_packages
+#  packages: *sony_bahamut_packages
 
 #
 # Volla
 #
 
 # Volla Phone (yggdrasil)
-volla_yggdrasil:
-  type: image
-  arch: arm64
-  edition: phosh
-  variant: phone
-  apilevel: 28
+#volla_yggdrasil:
+#  type: image
+#  arch: arm64
+#  edition: phosh
+#  variant: phone
+#  apilevel: 28
 
-  packages: *volla_yggdrasil_packages
+#  packages: *volla_yggdrasil_packages
 
 # Volla Phone 22 (mimameid)
-volla_mimameid:
-  type: rootfs
-  arch: arm64
-  edition: phosh
-  variant: phone
-  apilevel: 30
+#volla_mimameid:
+#  type: rootfs
+#  arch: arm64
+#  edition: phosh
+#  variant: phone
+#  apilevel: 30
 
-  packages: *volla_mimameid_packages
+#  packages: *volla_mimameid_packages
 
 #
 # Xiaomi
 #
 
 # Xiaomi Redmi Note 9S/9 Pro/9 Pro Max/M2 Pro (miatoll)
-xiaomi_miatoll:
-  type: image
-  arch: arm64
-  edition: phosh
-  variant: phone
-  apilevel: 29
+#xiaomi_miatoll:
+#  type: image
+#  arch: arm64
+#  edition: phosh
+#  variant: phone
+#  apilevel: 29
 
-  packages: *xiaomi_miatoll_packages
+#  packages: *xiaomi_miatoll_packages
