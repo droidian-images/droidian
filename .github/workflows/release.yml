@@ -1,10 +1,13 @@
-name: DLS OS rootfs-builder
+name: DLS_OS rootfs-builder
 
 on:
   workflow_dispatch:
   push:
-  #schedule:
-  #  - cron: "59 23 * * *"
+#  schedule:
+#    - cron: "59 23 * * *"
+
+permissions:          # Give a permission
+  contents: write  
 
 jobs:
   once:
