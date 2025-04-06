@@ -1,5 +1,4 @@
 # DLS OS
-========
 
 **DLS OS** is a GNU/Linux distribution based on Debian, oriented towards **penetration testing** and cybersecurity research. It is designed to bring the power of a full Linux pentesting environment to mobile devices, taking inspiration from Mobian and adapted to run on Android-based phones.
 
