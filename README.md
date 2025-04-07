@@ -1,94 +1,98 @@
-Droidian
-========
+# DLS OS
 
-Droidian is a GNU/Linux distribution based on top of Mobian, a Debian-based distribution for mobile devices. The goal of Droidian is to be able to run Mobian on Android phones.
+**DLS OS** is a GNU/Linux distribution based on Debian, oriented towards **penetration testing** and cybersecurity research. It is designed to bring the power of a full Linux pentesting environment to mobile devices, taking inspiration from Droidian(**Mobian**) and adapted to run on Android-based phones.
 
-This repository is the canonical place to get Droidian images.
+This repository is the canonical place to get DLS OS images.
 
 # Which image to get?
 
 There are two different types of images:
 
-* Fastboot-flashable image
+* Fastboot-flashable image  
 * Recovery-flashable zipfile
 
-Fastboot-flashable images are, instead, the recommended way to install Droidian. These images are device specific, so if you want one for your device you should create one yourself.
-Fastboot-flashable images support Full Disk Encryption, and make use of the whole userdata partition.
+Fastboot-flashable images are the recommended way to install DLS OS. These images are device-specific, so if you want one for your device, you might need to create it yourself.  
+Fastboot-flashable images support **Full Disk Encryption** and utilize the entire userdata partition.
 
-The recovery flashable zipfile needs to be flashed via a suitable Android recovery (such as TWRP). Recovery flashable zipfiles are generic, and are useful to test drive Droidian or in early device porting stages.
-You should pick up the correct zipfile for your specific device:
+The recovery-flashable zipfile needs to be flashed via a suitable Android recovery (such as TWRP). Recovery flashable zipfiles are **generic**, and are useful to test drive DLS OS or in early stages of device porting.
 
-* Device with an Android 9 vendor: api28
-* Device with an Android 10 vendor: api29
-* Device with an Android 11 vendor: api30
-* Device with an Android 12/12.1 vendor: api32
-* Device with an Android 12/12.1 vendor: api33
+You should choose the correct zipfile for your specific device:
 
-If you're in doubt, and there is a fastboot-flashable image available for your device, it's recommended to use that.
+* Device with an Android 9 vendor: api28  
+* Device with an Android 10 vendor: api29  
+* Device with an Android 11 vendor: api30  
+* Device with an Android 12/12.1 vendor: api32  
+* Device with an Android 13 vendor: api33
+
+If you're unsure, and a fastboot-flashable image is available for your device, it's recommended to use that.
 
 ## Recovery-flashable zipfile: bundles
 
-Recovery flashable zipfiles support the addition of *bundles*, which allow to add functionality directly during the flashing process.
+Recovery flashable zipfiles support the addition of **bundles**, which allow you to add extra functionality directly during the flashing process.
 
 Currently available bundles:
 
-* Devtools: Useful development tools for porters, not available in nightlies as they're embedded in the rootfs
-* Adaptation bundle: Device specific bundle (containing kernel, device-specific settings, etc)
+* **Devtools**: Useful development tools for porters (not available in nightlies as they are embedded in the rootfs)  
+* **Adaptation bundle**: Device-specific bundle (kernel, settings, etc.)
 
-**Keep in mind that is still recommended using fastboot-flashable images if available for your device.**
+> **Note:** It is still recommended to use fastboot-flashable images if available for your device.
 
 # Fastboot-flashable image: installation instructions
 
 ## Preparations
 
-If your device is A/B device, it is necessary to have both slots on same Android version.
+If your device uses A/B partitions, make sure both slots run the same Android version.
 
-Ensure you have `fastboot` installed.
+Ensure `fastboot` is installed.
 
 ## Installation
 
 Extract the downloaded archive, then run:
 
-```
+```bash
 ./flash_all.sh
 ```
 
-You might need to execute that at root depending on how your system is configured.
+You might need root permissions depending on your system configuration.
 
 ## Finalizing installation
 
-The device will reboot automatically. When the device has booted, you can unlock the device with the default passcode `1234`.
+The device will reboot automatically. When it boots up, you can unlock it using the default passcode `1234`.
 
 # Recovery-flashable zipfile: installation instructions
 
 ## Preparations
 
-If your device is A/B device, it is necessary to have both slots on same Android version.
+If your device uses A/B partitions, make sure both slots run the same Android version.
 
-Then, boot your favourite Android recovery.
+Then boot into your preferred Android recovery.
 
 ## Installation
 
-From recovery open adb sideload mode (under advanced on TWRP) and run following commands on your computer replacing `ARCH_YYYYMMDD` with the version of Droidian and `vendor-device` with the vendor and device codenames:
+From recovery, open **ADB sideload mode** (under "Advanced" in TWRP) and run the following commands on your computer, replacing `ARCH_YYYYMMDD` with the version of DLS OS and `vendor-device` with the appropriate codename:
 
-* `adb sideload droidian-OFFICIAL-phosh-phone-rootfs-apiXX-ARCH-VERSION_DATE.zip`
+* `adb sideload dlsos-OFFICIAL-phosh-phone-rootfs-apiXX-ARCH-VERSION_DATE.zip`
 
-If you want to sideload devtools:
+To sideload development tools:
 
-* `adb sideload droidian-devtools-ARCH_YYYYMMDD.zip`
+* `adb sideload dlsos-devtools-ARCH_YYYYMMDD.zip`
 
-If you want to sideload an adaptation bundle:
+To sideload an adaptation bundle:
 
-* `adb sideload droidian-adapatation-vendor-device-ARCH_YYYYMMDD.zip`
+* `adb sideload dlsos-adaptation-vendor-device-ARCH_YYYYMMDD.zip`
 
-Note that you have to restart the sideload mode by tapping back and starting sideload again before every `adb sideload command`.
+> ⚠️ Restart sideload mode after each command by going back and selecting it again.
 
 ## Finalizing installation
 
-Now, you have to reboot the device. It should boot to phosh (a graphical user interface used by Droidian) after rebooting once more automatically. When the device has booted, you can unlock the device with the default passcode `1234`.
+Reboot the device. It should boot into **phosh**, the graphical user interface used by DLS OS. After one more reboot, you can unlock it with the default passcode `1234`.
 
 ## Troubleshooting
 
-If the image does not boot and your userdata is not an ext4 partition, you might try formatting it. **Note that this is a destructive operation, you cannot recover files from userdata afterwards!**
+If the image doesn't boot and your userdata is not formatted as ext4, you may need to format it manually.
 
-* `fastboot format:ext4 userdata`
+> ⚠️ **Warning: This will erase all data on the userdata partition!**
+
+```bash
+fastboot format:ext4 userdata
+```
