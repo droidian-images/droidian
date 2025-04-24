@@ -11,7 +11,7 @@ permissions:          # Give a permission
 
 jobs:
   once:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     name: Generate matrix
     outputs:
       matrix: ${{ steps.gen-matrix.outputs.matrix }}
