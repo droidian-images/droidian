@@ -81,7 +81,10 @@ jobs:
 
       - name: List containers
         run: docker ps -a
-
+      
+      - name: Show container logs (optional)
+        run: docker logs $CONTAINER_HASH || echo "No logs yet"
+      
       - name: Build rootfs
         run: |
           docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; DROIDIAN_VERSION="${{ env.DROIDIAN_VERSION }}" ./generate_device_recipe.py ${{ matrix.config.product }} ${{ matrix.config.arch }} ${{ matrix.config.edition }} ${{ matrix.config.variant }} ${{ matrix.config.apilevel }} ${{ matrix.config.droidian_variant }} && debos --disable-fakemachine generated/droidian.yaml'
