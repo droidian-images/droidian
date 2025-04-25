@@ -76,6 +76,12 @@ jobs:
       - name: Start Container
         run: echo CONTAINER_HASH=$(docker run --detach --privileged -v /tmp/buildd-results:/buildd/out -v /dev:/host-dev -v /sys/fs/cgroup:/sys/fs/cgroup -v ${PWD}:/buildd/sources --security-opt seccomp:unconfined quay.io/droidian/rootfs-builder:next-amd64 /sbin/init) >> $GITHUB_ENV
 
+      - name: Debug container hash
+        run: echo "Container hash is $CONTAINER_HASH and PWD is ${PWD}"
+
+      - name: List containers
+        run: docker ps -a
+
       - name: Build rootfs
         run: |
           docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; DROIDIAN_VERSION="${{ env.DROIDIAN_VERSION }}" ./generate_device_recipe.py ${{ matrix.config.product }} ${{ matrix.config.arch }} ${{ matrix.config.edition }} ${{ matrix.config.variant }} ${{ matrix.config.apilevel }} ${{ matrix.config.droidian_variant }} && debos --disable-fakemachine generated/droidian.yaml'
