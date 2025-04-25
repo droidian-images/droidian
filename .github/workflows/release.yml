@@ -11,7 +11,7 @@ permissions:          # Give a permission
 
 jobs:
   once:
-    runs-on: self-hosted
+    runs-on: [self-hosted, yann-cli]
     name: Generate matrix
     outputs:
       matrix: ${{ steps.gen-matrix.outputs.matrix }}
@@ -27,7 +27,7 @@ jobs:
           echo "matrix=${JOBS}" >> $GITHUB_OUTPUT
 
   build:
-    runs-on: self-hosted
+    runs-on: [self-hosted, yann-cli]
     needs: once
 
     strategy:
@@ -98,7 +98,7 @@ jobs:
           retention-days: 1
 
   prepare:
-    runs-on: self-hosted
+    runs-on: [self-hosted, yann-cli]
     name: Create GitHub release
     needs: build
     outputs:
@@ -162,7 +162,7 @@ jobs:
           prerelease: true
 
   publish:
-    runs-on: self-hosted
+    runs-on: [self-hosted, yann-cli]
     needs: [once, prepare]
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}${{ steps.create_nightly.outputs.upload_url }}
