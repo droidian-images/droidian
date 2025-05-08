@@ -11,7 +11,7 @@ permissions:          # Give a permission
 
 jobs:
   once:
-    runs-on: ubuntu 22.04
+    runs-on: ubuntu-22.04
     # runs-on: [self-hosted, yann-cli]
     name: Generate matrix
     outputs:
@@ -28,7 +28,7 @@ jobs:
           echo "matrix=${JOBS}" >> $GITHUB_OUTPUT
 
   build:
-    runs-on: ubuntu 22.04
+    runs-on: ubuntu-22.04
     # runs-on: [self-hosted, yann-cli]
     needs: once
 
@@ -100,7 +100,7 @@ jobs:
           retention-days: 1
 
   prepare:
-    runs-on: ubuntu 22.04
+    runs-on: ubuntu-22.04
     # runs-on: [self-hosted, yann-cli]
     name: Create GitHub release
     needs: build
@@ -165,7 +165,7 @@ jobs:
           prerelease: true
 
   publish:
-    runs-on: ubuntu 22.04
+    runs-on: ubuntu-22.04
     # runs-on: [self-hosted, yann-cli]
     needs: [once, prepare]
     outputs:
