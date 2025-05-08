@@ -12,7 +12,8 @@ permissions:          # Give a permission
 jobs:
   once:
     # runs-on: ubuntu-22.04
-    runs-on: [self-hosted, yann-cli]
+    # runs-on: [self-hosted, yann-cli]
+    runs-on: self-hosted
     name: Generate matrix
     outputs:
       matrix: ${{ steps.gen-matrix.outputs.matrix }}
@@ -29,7 +30,8 @@ jobs:
 
   build:
     # runs-on: ubuntu-22.04
-    runs-on: [self-hosted, yann-cli]
+    # runs-on: [self-hosted, yann-cli]
+    runs-on: self-hosted
     needs: once
 
     strategy:
@@ -101,7 +103,8 @@ jobs:
 
   prepare:
     # runs-on: ubuntu-22.04
-    runs-on: [self-hosted, yann-cli]
+    # runs-on: [self-hosted, yann-cli]
+    runs-on: self-hosted
     name: Create GitHub release
     needs: build
     outputs:
@@ -166,7 +169,8 @@ jobs:
 
   publish:
     # runs-on: ubuntu-22.04
-    runs-on: [self-hosted, yann-cli]
+    # runs-on: [self-hosted, yann-cli]
+    runs-on: self-hosted
     needs: [once, prepare]
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}${{ steps.create_nightly.outputs.upload_url }}
