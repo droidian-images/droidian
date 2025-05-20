@@ -12,7 +12,6 @@ permissions:          # Give a permission
 jobs:
   once:
     # runs-on: ubuntu-22.04
-    # runs-on: [self-hosted, yann-cli]
     runs-on: self-hosted
     name: Generate matrix
     outputs:
@@ -30,7 +29,6 @@ jobs:
 
   build:
     # runs-on: ubuntu-22.04
-    # runs-on: [self-hosted, yann-cli]
     runs-on: self-hosted
     needs: once
 
@@ -80,14 +78,14 @@ jobs:
       - name: Start Container
         run: echo CONTAINER_HASH=$(docker run --detach --privileged --cgroupns=host -v /tmp/buildd-results:/buildd/out -v /dev:/host-dev -v /sys/fs/cgroup:/sys/fs/cgroup -v ${PWD}:/buildd/sources --security-opt seccomp:unconfined quay.io/droidian/rootfs-builder:next-amd64 sleep infinity) >> $GITHUB_ENV
 
-      - name: Debug container hash
-        run: echo "Container hash is $CONTAINER_HASH and PWD is ${PWD}"
+      #- name: Debug container hash
+      #  run: echo "Container hash is $CONTAINER_HASH and PWD is ${PWD}"
 
-      - name: List containers
-        run: docker ps -a
+      #- name: List containers
+      #  run: docker ps -a
       
-      - name: Show container logs (optional)
-        run: docker logs $CONTAINER_HASH || echo "No logs yet"
+      #- name: Show container logs (optional)
+      #  run: docker logs $CONTAINER_HASH || echo "No logs yet"
       
       - name: Build rootfs
         run: |
@@ -103,7 +101,6 @@ jobs:
 
   prepare:
     # runs-on: ubuntu-22.04
-    # runs-on: [self-hosted, yann-cli]
     runs-on: self-hosted
     name: Create GitHub release
     needs: build
@@ -169,7 +166,6 @@ jobs:
 
   publish:
     # runs-on: ubuntu-22.04
-    # runs-on: [self-hosted, yann-cli]
     runs-on: self-hosted
     needs: [once, prepare]
     outputs:
